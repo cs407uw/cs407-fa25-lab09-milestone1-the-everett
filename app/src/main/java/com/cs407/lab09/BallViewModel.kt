@@ -39,7 +39,6 @@ class BallViewModel : ViewModel() {
         val currentBall = ball ?: return
 
         if (event.sensor.type == Sensor.TYPE_GRAVITY) {
-            println("gravity x=${event.values[0]}, y=${event.values[1]}, z=${event.values[2]}")
 
             if (lastTimestamp != 0L) {
                 // Calculate the time difference (dT) in seconds
@@ -49,8 +48,8 @@ class BallViewModel : ViewModel() {
 
                 // Update the ball's position and velocity
                 // Hint: The sensor's x and y-axis are inverted
-                val ax = (-event.values[0] / 9.8f) * 3f
-                val ay = (event.values[2] / 9.8f) * 3f
+                val ax = -event.values[0] * 10f
+                val ay = event.values[2] * 10f
 
 
                 currentBall.updatePositionAndVelocity(ax, ay, dT)

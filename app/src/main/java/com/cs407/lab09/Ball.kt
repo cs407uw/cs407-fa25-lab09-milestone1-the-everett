@@ -60,7 +60,7 @@ class Ball(
 
         // v1 = v0 + 1/2(a0 + a1) * (t1 - t0)
         val newVelX = prevVelX + 0.5f * (prevAccX + accX) * dt
-        val newVelY = prevVelY + 0.5f * (prevAccX + accY) * dt
+        val newVelY = prevVelY + 0.5f * (prevAccY + accY) * dt
 
         velocityX = newVelX
         velocityY = newVelY
@@ -75,32 +75,30 @@ class Ball(
         // implement the checkBoundaries function
         // (Check all 4 walls: left, right, top, bottom)
 
-        val radius = ballSize / 2f
-
         // top wall
-        if (posY < radius) {
-            posY = radius
+        if (posY < 0) {
+            posY = 0f
             velocityY = 0f
             accY = 0f
         }
 
         // bottom wall
-        if (posY < backgroundHeight - radius) {
-            posY = backgroundHeight - radius
+        if (posY > backgroundHeight - ballSize) {
+            posY = backgroundHeight - ballSize
             velocityY = 0f
             accY = 0f
         }
 
         // left wall
-        if (posX < radius) {
-            posX = radius
+        if (posX < 0) {
+            posX = 0f
             velocityX = 0f
             accX = 0f
         }
 
         // right wall
-        if (posX > backgroundWidth - radius) {
-            posX = backgroundWidth - radius
+        if (posX > backgroundWidth - ballSize) {
+            posX = backgroundWidth - ballSize
             velocityX = 0f
             accX = 0f
         }
